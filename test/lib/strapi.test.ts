@@ -528,7 +528,7 @@ describe("Strapi SDK", () => {
     });
 
     test("findOne - Get a specific {content-type} entry", async () => {
-      await context.strapi.findOne("restaurants", 1, {
+      await context.strapi.findOne("restaurants", '1', {
         fields: ["name"],
       });
 
@@ -571,7 +571,7 @@ describe("Strapi SDK", () => {
     test("update - Update a {content-type} entry", async () => {
       await context.strapi.update(
         "restaurants",
-        1,
+        '1',
         {
           username: "La Fourchette",
         },

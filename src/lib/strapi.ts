@@ -324,16 +324,16 @@ export class Strapi {
    * Get a specific {content-type} entry
    *
    * @param  {string} contentType - Content type's name pluralized
-   * @param  {string|number} id - ID of entry
+   * @param  {string} documentId - ID of entry
    * @param  {StrapiBaseRequestParams} params? - Fields selection & Relations population
    * @returns Promise<StrapiResponse<T>>
    */
   public findOne<T>(
     contentType: string,
-    id: string | number,
+    documentId: string,
     params?: StrapiBaseRequestParams
   ): Promise<StrapiResponse<T>> {
-    return this.request<StrapiResponse<T>>("get", `/${contentType}/${id}`, {
+    return this.request<StrapiResponse<T>>("get", `/${contentType}/${documentId}`, {
       params,
     });
   }
@@ -361,18 +361,18 @@ export class Strapi {
    * Update a specific entry
    *
    * @param  {string} contentType - Content type's name pluralized
-   * @param  {string|number} id - ID of entry to be updated
+   * @param  {string} documentId - ID of entry to be updated
    * @param  {AxiosRequestConfig["data"]} data - New entry data
    * @param  {StrapiBaseRequestParams} params? - Fields selection & Relations population
    * @returns Promise<StrapiResponse<T>>
    */
   public update<T>(
     contentType: string,
-    id: string | number,
+    documentId: string,
     data: AxiosRequestConfig["data"],
     params?: StrapiBaseRequestParams
   ): Promise<StrapiResponse<T>> {
-    return this.request<StrapiResponse<T>>("put", `/${contentType}/${id}`, {
+    return this.request<StrapiResponse<T>>("put", `/${contentType}/${documentId}`, {
       data: { data },
       params,
     });
@@ -382,16 +382,16 @@ export class Strapi {
    * Delete en entry
    *
    * @param  {string} contentType - Content type's name pluralized
-   * @param  {string|number} id - ID of entry to be deleted
+   * @param  {string} documentId - ID of entry to be deleted
    * @param  {StrapiBaseRequestParams} params? - Fields selection & Relations population
    * @returns Promise<StrapiResponse<T>>
    */
   public delete<T>(
     contentType: string,
-    id: string | number,
+    documentId: string | number,
     params?: StrapiBaseRequestParams
   ): Promise<StrapiResponse<T>> {
-    return this.request<StrapiResponse<T>>("delete", `/${contentType}/${id}`, {
+    return this.request<StrapiResponse<T>>("delete", `/${contentType}/${documentId}`, {
       params,
     });
   }
