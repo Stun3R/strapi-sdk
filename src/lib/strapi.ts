@@ -43,6 +43,9 @@ const defaults: StrapiDefaultOptions = {
     cookieOptions: { path: "/" },
   },
   axiosOptions: {},
+  axiosCreate(instanceConfig) {
+    return axios.create(instanceConfig);
+  }
 };
 
 export class Strapi {
@@ -58,6 +61,7 @@ export class Strapi {
    * @param {string} options.url? - Your Strapi API URL, Default: http://localhost::1337
    * @param {StoreConfig} options.store? - Config the way you want to store JWT (Cookie or LocalStorage)
    * @param {AxiosRequestConfig} options.axiosOptions? - The list of your Content type on your Strapi API
+   * @param {Function} options.axiosCreate? - Axios instance creator function
    */
   constructor(options?: StrapiOptions) {
     // merge given options with default values
@@ -71,11 +75,11 @@ export class Strapi {
     };
 
     // create axios instance
-    this.axios = axios.create({
+    this.axios = this.options.axiosCreate({
       baseURL: joinURL(this.options.url, this.options.prefix),
       paramsSerializer: qs.stringify,
       ...this.options.axiosOptions,
-    });
+    })
 
     // Synchronize token before each request
     this.axios.interceptors.request.use((config) => {

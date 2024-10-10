@@ -1,4 +1,4 @@
-import type { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig, AxiosStatic } from "axios";
 import type { CookieAttributes } from "js-cookie";
 
 export type StrapiAuthProvider =
@@ -528,6 +528,7 @@ export interface StrapiOptions {
   prefix?: string;
   store?: StoreConfig;
   axiosOptions?: AxiosRequestConfig;
+  axiosCreate?: AxiosStatic['create']
 }
 
 export interface StrapiDefaultOptions {
@@ -535,6 +536,7 @@ export interface StrapiDefaultOptions {
   prefix: string;
   store: StoreConfig;
   axiosOptions: AxiosRequestConfig;
+  axiosCreate: AxiosStatic['create']
 }
 
 export type StrapiUser = Record<string, unknown> | null;
